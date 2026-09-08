@@ -52,12 +52,24 @@
     </a>
   </section>
 
-  <section class="save-contact">
+  <section class="contact-direct" aria-label="Contacto directo">
+    <h2 class="section-title">Contacto directo</h2>
+
+    <a class="phone-line" href="tel:+34916546089">
+      <span class="phone-number">916 546 089</span>
+      <span class="phone-label">Fijo</span>
+    </a>
+
+    <a class="phone-line phone-line--mobile" id="mobileLine" href="#" hidden>
+      <span class="phone-number" id="mobileNumber"></span>
+      <span class="phone-label">Móvil · WhatsApp</span>
+    </a>
+
     <button class="save-btn" id="saveContactBtn" type="button">
       <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7l-4-4zm-7 16a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm3-10H6V5h9v4z"/></svg>
-      <span>Guardar contacto</span>
+      <span id="saveContactLabel">Guardar contacto</span>
     </button>
-    <p class="save-hint">Se añade a tu agenda sin escribir nada a mano</p>
+    <p class="save-hint" id="saveContactHint">Se añade a tu agenda sin escribir nada a mano</p>
   </section>
 
   <section class="social-hero" aria-label="Redes sociales">
@@ -95,9 +107,14 @@
         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
         <span>Calle del Fuego 57, Alcobendas, 28100 Madrid</span>
       </li>
-      <li>
+      <li class="hours">
         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm.9 10.6L17 15l-.8 1.4-5-3V6.5h1.7v6.1z"/></svg>
-        <span class="placeholder">[Horario pendiente de confirmar]</span>
+        <div class="hours-text">
+          <span class="hours-row"><strong>Lunes a viernes</strong> 10:30–14:00 y 17:00–20:00</span>
+          <span class="hours-row"><strong>Sábado</strong> 10:30–14:00</span>
+          <span class="hours-row"><strong>Domingo</strong> cerrado</span>
+          <span class="hours-secondary">Pedidos online: entrega a domicilio 10:00–14:00 · recogida en tienda 10:00–17:00</span>
+        </div>
       </li>
     </ul>
 

@@ -149,15 +149,57 @@ button {
   fill: var(--ok-green);
 }
 
-/* Save contact */
+/* Contacto directo */
 
-.save-contact {
-  text-align: center;
+.contact-direct {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
 }
+
+.phone-line {
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 20px;
+  border-radius: var(--radius);
+  background: var(--ink-soft);
+  border: 1px solid rgba(198, 161, 91, 0.35);
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+}
+
+.phone-line:hover {
+  background: var(--burgundy-deep);
+  border-color: var(--gold);
+}
+
+.phone-line:active {
+  transform: scale(0.99);
+}
+
+.phone-number {
+  font-family: "Italiana", serif;
+  font-size: 1.7rem;
+  letter-spacing: 0.02em;
+  color: var(--ivory);
+}
+
+.phone-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--gold);
+  font-weight: 500;
+}
+
+.phone-line--mobile .phone-number {
+  font-size: 1.4rem;
+}
+
+/* Save contact */
 
 .save-btn {
   width: 100%;
@@ -358,6 +400,23 @@ button {
 .placeholder {
   color: var(--ivory-dim);
   font-style: italic;
+}
+
+.hours-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.hours-row strong {
+  font-weight: 600;
+  color: var(--ivory);
+}
+
+.hours-secondary {
+  margin-top: 6px;
+  font-size: 0.82rem;
+  color: var(--ivory-dim);
 }
 
 .map-wrap {
