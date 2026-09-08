@@ -3,7 +3,7 @@
 
   // ── Rellenar cuando esté disponible ──────────────────────────────
   // Número de WhatsApp/móvil en formato internacional sin espacios, ej. "34600123456".
-  // Mientras esté vacío, el botón de WhatsApp y la línea de "Móvil" permanecen ocultos.
+  // Mientras esté vacío, el botón de WhatsApp y la tarjeta de "Móvil" permanecen ocultos.
   var WHATSAPP_NUMBER = "";
   // Cómo se muestra el número en la tarjeta, ej. "600 123 456". Si se deja vacío
   // se usa WHATSAPP_NUMBER tal cual con un "+" delante.
@@ -22,6 +22,55 @@
     }
   };
 
+  // ── Datos de contacto (una fuente para las vCards individuales) ───
+  var CONTACTS = {
+    fijo: {
+      name: "Las Raíces – Danza y Flamenco (Fijo)",
+      org: "Las Raíces – Danza y Flamenco",
+      tel: "+34916546089",
+      telType: "WORK,VOICE",
+      email: "info@raicesdanzayflamenco.com",
+      adr: ";;Calle del Fuego 57;Alcobendas;Madrid;28100;España",
+      url: "https://www.raicesdanzayflamenco.com"
+    }
+    // "movil" se añade dinámicamente más abajo si WHATSAPP_NUMBER tiene valor.
+  };
+
+  function buildVCard(c) {
+    var lines = [
+      "BEGIN:VCARD",
+      "VERSION:3.0",
+      "N:;" + c.name + ";;;",
+      "FN:" + c.name,
+      "ORG:" + c.org,
+      "TEL;TYPE=" + c.telType + ":" + c.tel,
+      "EMAIL;TYPE=WORK:" + c.email,
+      "ADR;TYPE=WORK:" + c.adr,
+      "URL:" + c.url,
+      "END:VCARD"
+    ];
+    return lines.join("\r\n");
+  }
+
+  function downloadVCard(c) {
+    var blob = new Blob([buildVCard(c)], { type: "text/vcard;charset=utf-8" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = c.name.replace(/[()]/g, "") + ".vcf";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () {
+      URL.revokeObjectURL(url);
+    }, 1000);
+  }
+
+  function saveContact(key) {
+    var c = CONTACTS[key];
+    if (c) downloadVCard(c);
+  }
+
   // ── WhatsApp (acción rápida) ─────────────────────────────────────
   var whatsappBtn = document.getElementById("whatsappBtn");
   if (whatsappBtn && WHATSAPP_NUMBER) {
@@ -31,19 +80,38 @@
     whatsappBtn.hidden = false;
   }
 
-  // ── Móvil (línea de contacto directo) + vCard con dos teléfonos ──
-  var mobileLine = document.getElementById("mobileLine");
+  // ── Móvil (tarjeta de contacto directo) ───────────────────────────
+  var mobileCard = document.getElementById("mobileCard");
   var mobileNumberEl = document.getElementById("mobileNumber");
+  var mobileCallBtn = document.getElementById("mobileCallBtn");
   var saveContactLabel = document.getElementById("saveContactLabel");
   var saveContactHint = document.getElementById("saveContactHint");
 
-  if (mobileLine && WHATSAPP_NUMBER) {
-    mobileLine.href = "tel:+" + WHATSAPP_NUMBER;
+  if (mobileCard && WHATSAPP_NUMBER) {
+    CONTACTS.movil = {
+      name: "Las Raíces – Danza y Flamenco (Móvil / WhatsApp)",
+      org: "Las Raíces – Danza y Flamenco",
+      tel: "+" + WHATSAPP_NUMBER,
+      telType: "CELL",
+      email: "info@raicesdanzayflamenco.com",
+      adr: ";;Calle del Fuego 57;Alcobendas;Madrid;28100;España",
+      url: "https://www.raicesdanzayflamenco.com"
+    };
+
     mobileNumberEl.textContent = WHATSAPP_DISPLAY || "+" + WHATSAPP_NUMBER;
-    mobileLine.hidden = false;
+    mobileCallBtn.href = "tel:+" + WHATSAPP_NUMBER;
+    mobileCard.hidden = false;
 
     if (saveContactLabel) saveContactLabel.textContent = "Guardar los dos contactos";
     if (saveContactHint) saveContactHint.textContent = "Añade el fijo y el móvil a tu agenda sin escribir nada a mano";
+  }
+
+  // ── Botones de guardar individuales (uno por tarjeta) ─────────────
+  var saveButtons = document.querySelectorAll("[data-save]");
+  for (var i = 0; i < saveButtons.length; i++) {
+    saveButtons[i].addEventListener("click", function (e) {
+      saveContact(e.currentTarget.getAttribute("data-save"));
+    });
   }
 
   // ── TikTok (por si en el futuro se quiere activar como enlace real) ─
@@ -61,39 +129,12 @@
     }
   }
 
-  // ── Guardar contacto (.vcf) ──────────────────────────────────────
+  // ── Guardar contacto(s) — botón ancho ──────────────────────────────
   var saveContactBtn = document.getElementById("saveContactBtn");
   if (saveContactBtn) {
     saveContactBtn.addEventListener("click", function () {
-      var lines = [
-        "BEGIN:VCARD",
-        "VERSION:3.0",
-        "N:;Las Raíces – Danza y Flamenco;;;",
-        "FN:Las Raíces – Danza y Flamenco",
-        "ORG:Las Raíces – Danza y Flamenco",
-        "TEL;TYPE=WORK,VOICE:+34916546089"
-      ];
-      if (WHATSAPP_NUMBER) {
-        lines.push("TEL;TYPE=CELL,VOICE:+" + WHATSAPP_NUMBER);
-      }
-      lines.push(
-        "EMAIL;TYPE=WORK:info@raicesdanzayflamenco.com",
-        "ADR;TYPE=WORK:;;Calle del Fuego 57;Alcobendas;Madrid;28100;España",
-        "URL:https://www.raicesdanzayflamenco.com",
-        "END:VCARD"
-      );
-      var vcard = lines.join("\r\n");
-      var blob = new Blob([vcard], { type: "text/vcard;charset=utf-8" });
-      var url = URL.createObjectURL(blob);
-      var a = document.createElement("a");
-      a.href = url;
-      a.download = "Las-Raices-Danza-y-Flamenco.vcf";
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      setTimeout(function () {
-        URL.revokeObjectURL(url);
-      }, 1000);
+      saveContact("fijo");
+      if (CONTACTS.movil) saveContact("movil");
     });
   }
 })();

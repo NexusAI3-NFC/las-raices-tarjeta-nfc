@@ -158,45 +158,92 @@ button {
   gap: 12px;
 }
 
-.phone-line {
+.contact-card {
   width: 100%;
   display: flex;
-  align-items: baseline;
-  justify-content: center;
-  gap: 10px;
-  padding: 16px 20px;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
   border-radius: var(--radius);
   background: var(--ink-soft);
   border: 1px solid rgba(198, 161, 91, 0.35);
-  transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
 }
 
-.phone-line:hover {
+.contact-avatar {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
   background: var(--burgundy-deep);
-  border-color: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.phone-line:active {
-  transform: scale(0.99);
+.contact-avatar svg {
+  width: 19px;
+  height: 19px;
+  fill: var(--gold);
 }
 
-.phone-number {
+.contact-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.contact-name {
   font-family: "Italiana", serif;
-  font-size: 1.7rem;
+  font-size: 1.35rem;
   letter-spacing: 0.02em;
   color: var(--ivory);
 }
 
-.phone-label {
-  font-size: 0.75rem;
+.contact-role {
+  font-size: 0.72rem;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   color: var(--gold);
   font-weight: 500;
 }
 
-.phone-line--mobile .phone-number {
-  font-size: 1.4rem;
+.contact-btns {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.icon-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--burgundy-deep);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.icon-btn:hover {
+  background: var(--burgundy);
+}
+
+.icon-btn:active {
+  transform: scale(0.94);
+}
+
+.icon-btn svg {
+  width: 16px;
+  height: 16px;
+  fill: var(--ivory);
+}
+
+.icon-btn--save svg {
+  fill: var(--gold);
 }
 
 /* Save contact */
@@ -224,12 +271,6 @@ button {
 
 .save-btn:active {
   transform: scale(0.98);
-}
-
-.save-btn .icon {
-  width: 22px;
-  height: 22px;
-  fill: var(--ink);
 }
 
 .save-hint {
