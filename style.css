@@ -1,6 +1,8 @@
 :root {
-  --burgundy: #5c1220;
-  --burgundy-deep: #3a0b13;
+  --burgundy: #6d1f28;
+  --burgundy-deep: #3a0f16;
+  --rose: #9c4258;
+  --rose-soft: #c98a9c;
   --ink: #1a0d0f;
   --ink-soft: #2a1519;
   --gold: #c6a15b;
@@ -24,7 +26,7 @@ body {
   margin: 0;
   min-height: 100vh;
   background:
-    radial-gradient(120% 60% at 50% 0%, var(--burgundy) 0%, var(--ink) 55%),
+    radial-gradient(120% 60% at 50% 0%, var(--rose) 0%, var(--burgundy) 45%, var(--ink) 82%),
     var(--ink);
   color: var(--ivory);
   font-family: "Jost", "Segoe UI", system-ui, sans-serif;
@@ -68,16 +70,20 @@ button {
   padding-top: 8px;
 }
 
-.crest {
-  color: var(--gold);
-  margin-bottom: 6px;
+.crest-logo {
+  width: 88px;
+  height: 88px;
+  object-fit: contain;
+  margin-bottom: 2px;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
 }
 
 .brand {
-  font-family: "Italiana", serif;
+  font-family: "WindSong", cursive;
   font-weight: 400;
-  font-size: 2.6rem;
-  letter-spacing: 0.03em;
+  font-size: 3.4rem;
+  line-height: 1;
+  letter-spacing: 0;
   margin: 0;
   color: var(--ivory);
 }
@@ -304,7 +310,7 @@ button {
   gap: 16px;
   padding: 20px;
   border-radius: 20px;
-  background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-deep) 100%);
+  background: linear-gradient(135deg, var(--rose) 0%, var(--burgundy) 55%, var(--burgundy-deep) 100%);
   border: 1px solid rgba(198, 161, 91, 0.5);
   box-shadow: 0 8px 24px rgba(58, 11, 19, 0.4);
   transition: transform 0.15s ease, border-color 0.15s ease;
