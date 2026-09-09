@@ -101,7 +101,7 @@ button {
 
 .tagline {
   margin: 10px 0 0;
-  max-width: 34ch;
+  max-width: 40ch;
   color: var(--ivory-dim);
   font-size: 0.95rem;
 }
