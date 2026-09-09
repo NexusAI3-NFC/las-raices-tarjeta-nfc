@@ -1,15 +1,14 @@
 :root {
-  --burgundy: #6d1f28;
-  --burgundy-deep: #3a0f16;
-  --rose: #9c4258;
-  --rose-soft: #c98a9c;
-  --ink: #1a0d0f;
-  --ink-soft: #2a1519;
+  --burgundy: #97105f;
+  --burgundy-deep: #4a0836;
+  --rose: #e6299c;
+  --rose-soft: #f0a8d6;
+  --ink: #170a14;
+  --ink-soft: #26121f;
   --gold: #c6a15b;
   --gold-soft: #d9c093;
   --ivory: #f6ede3;
   --ivory-dim: #cbb9ab;
-  --ok-green: #25963f;
   --radius: 16px;
   --tap-min: 56px;
 }
@@ -26,7 +25,7 @@ body {
   margin: 0;
   min-height: 100vh;
   background:
-    radial-gradient(120% 60% at 50% 0%, var(--rose) 0%, var(--burgundy) 45%, var(--ink) 82%),
+    radial-gradient(130% 95% at 50% 0%, var(--rose) 0%, var(--burgundy) 60%, var(--ink) 100%),
     var(--ink);
   color: var(--ivory);
   font-family: "Jost", "Segoe UI", system-ui, sans-serif;
@@ -79,13 +78,15 @@ button {
 }
 
 .brand {
-  font-family: "Mrs Saint Delafield", cursive;
-  font-weight: 400;
-  font-size: 3.4rem;
-  line-height: 1;
-  letter-spacing: 0;
   margin: 0;
-  color: var(--ivory);
+}
+
+.brand-logo {
+  display: block;
+  width: 260px;
+  max-width: 78vw;
+  height: auto;
+  filter: brightness(0) invert(1) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
 }
 
 .brand-sub {
@@ -143,15 +144,6 @@ button {
   height: 22px;
   flex-shrink: 0;
   fill: var(--gold);
-}
-
-#whatsappBtn {
-  background: rgba(37, 150, 63, 0.12);
-  border-color: rgba(37, 150, 63, 0.45);
-}
-
-#whatsappBtn .icon {
-  fill: var(--ok-green);
 }
 
 /* Contacto directo */
@@ -495,8 +487,8 @@ button {
 
 /* Small phones */
 @media (max-width: 360px) {
-  .brand {
-    font-size: 2.2rem;
+  .brand-logo {
+    width: 200px;
   }
   .quick-actions {
     grid-template-columns: repeat(2, 1fr);
