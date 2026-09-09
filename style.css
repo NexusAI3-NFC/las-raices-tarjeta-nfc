@@ -492,7 +492,16 @@ button {
     width: 200px;
   }
   .quick-actions {
-    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+  .action-btn {
+    padding: 12px 4px 10px;
+    gap: 6px;
+    font-size: 0.7rem;
+  }
+  .action-btn .icon {
+    width: 19px;
+    height: 19px;
   }
 }
 
