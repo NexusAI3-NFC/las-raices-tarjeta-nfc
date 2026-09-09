@@ -3,6 +3,7 @@
   --burgundy-deep: #4a0836;
   --rose: #e6299c;
   --rose-soft: #f0a8d6;
+  --violet-deep: #2b0e42;
   --ink: #170a14;
   --ink-soft: #26121f;
   --gold: #c6a15b;
@@ -25,7 +26,7 @@ body {
   margin: 0;
   min-height: 100vh;
   background:
-    radial-gradient(130% 95% at 50% 0%, var(--rose) 0%, var(--burgundy) 60%, var(--ink) 100%),
+    radial-gradient(130% 95% at 50% 0%, var(--rose) 0%, var(--burgundy) 48%, var(--violet-deep) 78%, var(--ink) 100%),
     var(--ink);
   color: var(--ivory);
   font-family: "Jost", "Segoe UI", system-ui, sans-serif;

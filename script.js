@@ -71,15 +71,6 @@
     if (c) downloadVCard(c);
   }
 
-  // ── WhatsApp (acción rápida) ─────────────────────────────────────
-  var whatsappBtn = document.getElementById("whatsappBtn");
-  if (whatsappBtn && WHATSAPP_NUMBER) {
-    whatsappBtn.href = "https://wa.me/" + WHATSAPP_NUMBER;
-    whatsappBtn.target = "_blank";
-    whatsappBtn.rel = "noopener";
-    whatsappBtn.hidden = false;
-  }
-
   // ── Móvil (tarjeta de contacto directo) ───────────────────────────
   var mobileCard = document.getElementById("mobileCard");
   var mobileNumberEl = document.getElementById("mobileNumber");
